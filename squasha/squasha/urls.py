@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from board import views, api_views
+import board
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',views.index, name ='index'),
+    path('board/<int:id>/',views.board_details,name='board_details'),
+    path('api/v1/board/', board.api_views.BoardList.as_view()),
+
+    #path('board/', include('board.urls')),
+    #path('user_profile/', include('user_profile.urls')),
 ]

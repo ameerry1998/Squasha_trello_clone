@@ -12,7 +12,7 @@ class ShowBoards extends Component{
     {this.props.boards.map(item => (
       <div className="pet-item col media py-3" key={item.boardId}>
           <div className="mr-3">
-            <button className="pet-delete btn btn-sm btn-danger"><FaTicketAlt /></button>
+            <button className="pet-delete btn btn-sm btn-danger" onClick={()=> this.props.deleteBoard(item)}><FaTicketAlt /></button>
           </div>
 
           <div className="pet-info media-body">

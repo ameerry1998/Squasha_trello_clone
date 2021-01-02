@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 
-import AddTickets from './AddTicket'
-import SearchTickets from './SearchTicket'
-import ShowBoards from './ShowBoard'
+import AddTickets from './AddTicket';
+import SearchTickets from './SearchTicket';
+import ShowBoards from './ShowBoard';
+
+import {without}  from 'lodash';
 
 class App extends Component{
 
@@ -12,7 +14,16 @@ class App extends Component{
     this.state = {
       theBoards :[],
       lastIndex: 1
-    }
+    };
+    this.deleteBoard = this.deleteBoard.bind(this);
+  }
+
+  deleteBoard(boardToBeDeleted){
+    let allBoards = this.state.theBoards;
+    allBoards = without(allBoards, boardToBeDeleted);
+    this.setState({
+        theBoards : allBoards
+    });
   }
 
   componentDidMount(){
@@ -47,7 +58,7 @@ class App extends Component{
             <div className="container">
               <AddTickets />
               <SearchTickets/>
-              <ShowBoards boards={this.state.theBoards}/>
+              <ShowBoards boards={this.state.theBoards} deleteBoard={this.deleteBoard}/>
             </div>
           </div>
         </div>
